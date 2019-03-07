@@ -9,12 +9,14 @@
                                'data-turbolinks-track': 'reload' %>
     <%= render 'layouts/shim' %> <!-- HTML shimがこの1行で済む -->
   </head>
-  <body>
-    <header class="navbar navbar-fixed-top navbar-inverse">
-      <div class="container">
-       <%= render 'layouts/header' %> <!-- headerの内容がこの1行で収まる -->
+   <body>
+    <%= render 'layouts/header' %>
     <div class="container">
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%=message%></div>
+        <% end %>
       <%= yield %>
+      <%= debug(params) if Rails.env.development? %>
     </div>
   </body>
 </html>
