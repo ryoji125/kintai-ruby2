@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      log_in @user
       flash[:success] ="ユーザーの新規作成に成功しました。"
       #保存が成功した際はここに記述した処理が実行
       redirect_to @user
